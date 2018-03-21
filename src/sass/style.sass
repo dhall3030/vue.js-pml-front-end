@@ -1,0 +1,342 @@
+$colorOne: #ffa500
+$container-width: 1120px
+
+
+=border-radius($radius)
+    -webkit-border-radius: $radius
+    -moz-border-radius:    $radius
+    -ms-border-radius:     $radius
+    border-radius:         $radius
+
+
+=transition($props)
+  -webkit-transition: $props
+  transition: $props
+
+$transProp: border 0.3s ease-out 0s , color 0.3s ease-out 0s
+
+$susy: ('columns': susy-repeat(12),'gutters': 0.5em,);
+
+body, html 
+ margin: 0
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+ overflow-x: hidden
+  
+p 
+  margin: 1em 0 1em 0
+
+h1
+  font-weight: bold
+  font-size: 2em
+  margin: 1em 0 1em 0
+
+h2
+  font-weight: bold
+  font-size: 1.5em
+  margin: 1em 0 1em 0 
+
+
+.center
+  text-align: center
+
+section
+  postion: relative
+  width: 100%
+  display: flex
+
+
+.container 
+  width: $container-width
+  margin: 0 auto
+  padding: gutter()
+
+.row 
+  display: flex
+
+
+.row:after 
+  content: ""
+  display: table
+  clear: both
+
+#header 
+  postion: relative
+  width: 100%
+  min-height: 40px
+  background-color: #000
+  border-bottom: 4px solid $colorOne 
+
+
+#header nav 
+  margin: 1em 0 1em 0
+  float: right
+
+  ul li 
+    float: left
+
+
+  a 
+    text-decoration: none 
+    color: #FFF
+    padding: 10px  20px 10px 0
+    font-weight: bold
+
+  .active 
+    color: $colorOne
+
+
+  button 
+    color: #FFF
+    padding: 0
+    font-weight: bold
+    background-color: transparent
+    border: none
+
+
+.brand 
+  float: left
+  color: #FFF
+  font-size: 1.5em
+  padding: 12px 0
+  cursor: pointer
+
+#home
+  padding-top: 6rem
+
+#home
+  h2 
+    font-weight: normal
+    color: $colorOne
+
+
+.box-link ,.box-link:active, .box-link:visited
+  border: 2px solid #000
+  text-align: center
+  text-decoration: none
+  display: block
+  padding: 30px 0
+  width: 95%
+  +border-radius(5px)
+  margin: 0 auto
+  color: #000
+  font-weight: bold
+  +transition($transProp)
+
+.box-link:hover 
+  color: $colorOne
+  border-color: $colorOne
+
+
+
+
+
+main 
+  width: span(12)
+
+.item 
+  width: span(6) 
+  padding: gutter()
+  float: left
+  //min-height: 300px
+  
+
+
+
+.input-container
+  width: 500px
+  margin: 30px auto
+  border: 1px solid #000
+  padding: 20px
+
+.input-container
+  h2
+    margin: 10px auto
+
+
+.input 
+  margin: 10px auto
+
+label 
+    display: block
+    color: #000
+    margin-bottom: 5px
+  
+  
+
+input[type="text"] , input[type="email"], input[type="password"] , textarea , input[type="tel"] , input[type="number"], select 
+  background-color: #FFF
+  border: solid 2px #e6e7e8
+  padding: 10px
+  width: 100%
+  margin: 10px 0 10px 0
+  font-size: 0.9em
+  border: 1px solid #e6e7e8
+  transition: border 0.5s ease-out 0s
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+
+
+
+
+input[type="text"]:focus , input[type="email"]:focus ,input[type="password"]:focus, textarea:focus 
+  background-color: #fff6e6
+  border: 1px solid #80ccff
+
+textarea
+  font-family: inherit
+  font-size: 0.9em
+  white-space: pre-wrap
+
+button
+  border: 1px solid #000
+  color: #000
+  background-color:#FFF
+  padding: 10px 20px
+  font: inherit
+  cursor: pointer
+  +transition($transProp)
+
+button:hover
+  color: $colorOne
+  border-color: $colorOne
+
+
+#media li
+  margin: 1em 0 1em 0
+
+
+
+.slide-enter-active 
+  animation: slideInRight 0.5s both ease-in
+
+.slide-leave-active
+  animation: slideOutLeft 0.5s both ease-in
+
+
+@keyframes slideOutLeft 
+  to
+    transform: translateX(-100%)
+
+
+@keyframes slideInRight 
+  from   
+    transform: translateX(100%)
+  to     
+    transform: translateX(0)
+
+
+=small-screen()
+  float: none
+  width: 100%
+  display: block
+
+
+#nav-icon
+  width: 40px
+  height: 45px
+  position: absolute
+  top: 20px
+  right: 20px
+  z-index: 9999
+  margin: 0px auto
+  -webkit-transform: rotate(0deg)
+  -moz-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+  -webkit-transition: .5s ease-in-out
+  -moz-transition: .5s ease-in-out
+  -o-transition: .5s ease-in-out
+  transition: .5s ease-in-out
+  cursor: pointer
+  display: none
+
+
+
+#nav-icon span
+  display: block
+  position: absolute
+  height: 3px
+  width: 100%
+  background: $colorOne
+  border-radius: 9px
+  opacity: 1
+  left: 0
+  -webkit-transform: rotate(0deg)
+  -moz-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+  -webkit-transition: .25s ease-in-out
+  -moz-transition: .25s ease-in-out
+  -o-transition: .25s ease-in-out
+  transition: .25s ease-in-out
+
+
+#nav-icon span:nth-child(1) 
+  top: 0px
+
+
+
+#nav-icon span:nth-child(2),#nav-icon span:nth-child(3) 
+  top: 10px
+
+
+#nav-icon span:nth-child(4) 
+  top: 20px
+
+
+#nav-icon.open span:nth-child(1) 
+  top: 10px
+  width: 0%
+  left: 50%
+
+
+#nav-icon.open span:nth-child(2) 
+  -webkit-transform: rotate(45deg)
+  -moz-transform: rotate(45deg)
+  -o-transform: rotate(45deg)
+  transform: rotate(45deg)
+
+
+#nav-icon.open span:nth-child(3) 
+  -webkit-transform: rotate(-45deg)
+  -moz-transform: rotate(-45deg)
+  -o-transform: rotate(-45deg)
+  transform: rotate(-45deg)
+
+
+#nav-icon.open span:nth-child(4) 
+  top: 10px
+  width: 0%
+  left: 50%
+
+
+@media screen and (max-width: 1119px)
+  .container 
+    width: 100%
+
+
+@media screen and (max-width: 768px)
+  .item
+    +small-screen()
+    padding: 0.5em 0
+  .row
+    display: block
+  .container 
+    width: 100%
+  #header nav
+    float: none
+  #header nav ul li 
+    float: none
+    text-align: center
+    margin: 10px 0
+  .brand
+    float: none
+  .input-container
+    width: 100%
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+  #nav-icon
+    display: block  
+  .nav
+    display: none
