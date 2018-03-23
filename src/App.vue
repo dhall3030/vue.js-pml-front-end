@@ -15,7 +15,8 @@
                 
                  
                  <transition name="slide" mode="out-in">
-                 <router-view :mediaTypes="mediaTypes" :media="media"  ></router-view>
+                <!--  <router-view :mediaTypes="mediaTypes" :media="media"  ></router-view> -->
+                 <router-view></router-view>
                  </transition>
                  
                   
@@ -59,22 +60,17 @@
       computed: { 
 
         
-        mediaTypes(){
-
-            return this.$store.getters.mediaTypes;
-
-        },
-
-        media(){
-
-            return this.$store.getters.media;
-
-        },
         token(){
 
             return this.$store.getters.token;
 
+        },
+        userId(){
+
+            return this.$store.getters.userId;
+
         }
+
        
 
       },
@@ -88,6 +84,19 @@
       created(){
          
          this.$store.dispatch('autoLogin') 
+
+
+           if(this.$store.getters.isAuthenticated == true){
+
+               const mediaData = {token: this.token , userId: this.userId} 
+
+               this.loadMediaTypes(this.token);
+               this.loadMedia(mediaData);
+
+               this.$router.replace('/dashboard')
+
+
+           }
         
 
 
@@ -101,13 +110,15 @@
 
 <style lang="sass">
 
-@import "~susy/sass/susy"
 
-@import 'sass/reset'
+
+
+
+@import 'sass/style'
 
 //$susy: ('columns': susy-repeat(12),'gutters': 0.5em,'spread': 'wide','container-spread': 'wide',);
 
-@import 'sass/style'
+
 
 
 </style>

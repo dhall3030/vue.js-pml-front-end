@@ -48,7 +48,7 @@
     import {mapActions} from 'vuex';
     export default { 
 
-      props: ['mediaTypes' ,'media'],
+      //props: ['mediaTypes' ,'media'],
       methods: { 
 
         ...mapActions({
@@ -87,6 +87,12 @@
       },
       computed: {
 
+
+        mediaTypes(){
+
+            return this.$store.getters.mediaTypes;
+
+        },
         token(){
 
             return this.$store.getters.token;
@@ -217,23 +223,12 @@ table a, table a:hover, table a:visited, table a:active
     top: 0
   
   table tbody tr td:nth-child(1):before 
-    content: "Id"
-  
-  table tbody tr td:nth-child(2):before 
     content: "Name"
   
-  table tbody tr td:nth-child(3):before 
-    content: "Type"
-  
-  table tbody tr td:nth-child(4):before 
-    content: "Profile"
-  
-  table tbody tr td:nth-child(5):before 
+  table tbody tr td:nth-child(2):before 
     content: "Delete"
   
-  table tbody tr td:nth-child(6):before 
-    content: "Total"
-  
+ 
 
 
 

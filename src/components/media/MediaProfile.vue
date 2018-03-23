@@ -8,17 +8,19 @@
 		
     		<h1>Media Profile</h1>
 
-    		<p>{{ $route.params.id }}</p>
-
+    	<!-- 	<p>{{ $route.params.id }}</p>
+ -->
         
 
-       <p>{{mediaItem.name}}</p>
+       <p><strong>Name: </strong>{{mediaItem.name}}</p>
 
-       <p>{{mediaType.name}}</p>
+       <p><strong>Media Type: </strong>{{mediaType.name}}</p>
+
+       <p><strong>Description: </strong></p>
 
        <p>{{mediaItem.description}}</p>
 
-       <p>{{mediaItem.number_of_copies}}</p>
+       <p><strong>Copies: </strong>{{mediaItem.number_of_copies}}</p>
 
       </main>
 
@@ -32,7 +34,7 @@
     
     export default { 
       
-      props: ['media'],
+      //props: ['media'],
       
       computed: {
         

@@ -10,7 +10,9 @@
 
 				 
 
-				 <div class="brand" @click="goHome">Media Library</div>
+				 <div v-if="!auth" class="brand" @click="goHome">Media Library</div>
+
+				 <div v-if="auth" class="brand" @click="dashboard">Media Library</div>
 
 				 <nav class="nav">
 					 <ul>
@@ -52,9 +54,16 @@ export default {
 
 
 		},
+		dashboard(){
+
+			this.$router.push('/dashboard')
+
+
+
+		},
 		 onLogout() {
 
-      		this.$store.dispatch('logoutTwo')
+      		this.$store.dispatch('logout')
 
     	}
 

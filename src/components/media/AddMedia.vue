@@ -13,13 +13,17 @@
 
 				<div class="input-container">
 
+					<div  v-html="getError"></div> 
 
 				    <h2>Add Media</h2>		
 
 
-						<div class="input"><label for="name">Name:</label><input type="text" placeholder="Enter name of media" id="name" name="name" v-model="name"></div>
+						<div class="input" :class="{invalid: $v.name.$error}">
+							<label for="name">Name:</label>
+							<input type="text" placeholder="Enter name of media" @blur="$v.name.$touch()" id="name" name="name" v-model="name">
+						</div>
 
-					    <div class="input">
+					    <div class="input" :class="{invalid: $v.name.$error}">
 					        <label for="media_type">Media Type:</label>	
 					        <select id="media_type" v-model="media_type">
 
@@ -30,9 +34,9 @@
 					    </div>
 
 					      	
-					    <div class="input">
+					    <div class="input" :class="{invalid: $v.description.$error}">
 					    	<label for="description">Description:</label>
-					    	<textarea id="description" placeholder="Enter a description" v-model="description"> </textarea> 
+					    	<textarea id="description" placeholder="Enter a description" @blur="$v.description.$touch()" v-model="description"> </textarea> 
 					    </div>
 
 					      
@@ -48,7 +52,7 @@
 				      	
 
 
-				     <button @click="onSubmit">Submit</button>
+				     <button @click="onSubmit" :disabled="$v.$invalid">Submit</button>
 
 		  		</div>
 
@@ -68,10 +72,10 @@
 import axios from 'axios'
 import {mapActions} from 'vuex'
 
-
+import { required } from 'vuelidate/lib/validators'
 
 export default {
-	props: ['mediaTypes'],
+	//props: ['mediaTypes'],
 	data() { 
 
 		 return { 
@@ -132,6 +136,18 @@ export default {
 
 
 	},
+	validations:{
+
+      name:{
+        required
+      },
+      description:{
+        required
+      }
+
+
+
+    },
 	computed: {
 
 		token(){
@@ -143,7 +159,32 @@ export default {
 
             return this.$store.getters.userId;
 
+        },
+        mediaTypes(){
+
+            return this.$store.getters.mediaTypes;
+
+        },
+        getError(){
+
+        let errorMsg = ""
+
+        
+        if(this.$v.name.$error && !this.$v.name.required){
+
+          errorMsg += "<p>The name field must not be empty.</p>";
+
         }
+        if(this.$v.description.$error && !this.$v.description.required){
+
+          errorMsg += "<p>The description field must not be empty.</p>";
+
+        }
+        if(errorMsg !=""){
+        return '<div class="alert alert-danger">'+errorMsg+'</div>';
+        }
+      
+      }
 
 
 	}
@@ -152,3 +193,32 @@ export default {
 
 
 </script>
+
+
+<style lang="sass" scoped>
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+
+.input.invalid label 
+  color: red
+
+.input.invalid input , .input.invalid textarea 
+  border: 1px solid #ebccd1
+  background-color: #f2dede
+
+button[disabled],
+button[disabled]:hover,
+button[disabled]:active 
+  border: 1px solid #ccc
+  background-color: transparent
+  color: #ccc;
+  cursor: not-allowed
+  
+
+
+</style>

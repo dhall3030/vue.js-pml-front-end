@@ -1,26 +1,15 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App.vue'
-//import {routes} from './routes'
+import axios from 'axios'
+import Vuelidate from 'vuelidate'
 
 import router from './router'
-
 import store from './store/store';
 
-import axios from 'axios'
+Vue.use(Vuelidate)
 
-axios.defaults.baseURL = 'http://pml/api'
-
-// Vue.use(VueRouter);
-
-// const router = new VueRouter({
-
-// 	routes,
-// 	mode: 'history'
-
-// });
-
-
+//axios.defaults.baseURL = 'http://pml/api'
+axios.defaults.baseURL = 'http://pml.dorianhall.ca/api'
 
 
 

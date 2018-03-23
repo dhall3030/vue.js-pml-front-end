@@ -14,6 +14,7 @@
     "susy": "^3.0.3",
     "vue": "^2.5.11",
     "vue-router": "^3.0.1",
+    "vuelidate": "^0.6.2",
     "vuex": "^3.0.1"
   },
   "browserslist": [

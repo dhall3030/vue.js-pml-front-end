@@ -3,14 +3,21 @@
 
 	 <div id="mySidenav" class="sidenav">
 	     
-	       <router-link class="nav-link" active-class="active" to="/home">Home</router-link>
-		   <router-link class="nav-link" active-class="active" to="/media">Media</router-link>
-		   <router-link class="nav-link" active-class="active" to="/add-media">Add Media</router-link>
-		   <router-link class="nav-link" active-class="active" to="/media-types">Media Types</router-link>
-		   <router-link class="nav-link" active-class="active" to="/add-media-types">Add Media Types</router-link>
-		   <router-link class="nav-link" active-class="active" to="/signup">Signup</router-link>
-           <router-link class="nav-link" active-class="active" to="/login">Login</router-link>
-	</div>
+	       
+       <router-link class="nav-link" v-if="!auth" active-class="active" to="/home">Home</router-link>
+       <router-link class="nav-link" v-if="auth" active-class="active" to="/dashboard">Dashboard</router-link>
+		   <router-link class="nav-link" v-if="auth" active-class="active" to="/media">Media</router-link>
+		   <router-link class="nav-link" v-if="auth" active-class="active" to="/add-media">Add Media</router-link>
+		   <router-link class="nav-link" v-if="auth" active-class="active" to="/media-types">Media Types</router-link>
+		   <router-link class="nav-link" v-if="auth" active-class="active" to="/add-media-types">Add Media Types</router-link>
+		   <router-link class="nav-link" v-if="!auth" active-class="active" to="/signup">Signup</router-link>
+       <router-link class="nav-link" v-if="!auth" active-class="active" to="/login">Login</router-link>
+       
+       <br>
+       
+       <div v-if="auth"><button @click="onLogout" class="logout" >Logout</button></div>
+	    
+  </div>
 
 
 </template>
@@ -20,6 +27,29 @@
 <script>
 	
  export default { 
+
+    methods:{
+
+      onLogout() {
+
+          this.$store.dispatch('logout')
+
+      }
+
+    },
+    computed: {
+
+      auth(){
+
+          return this.$store.getters.isAuthenticated
+
+
+        }
+
+
+
+    }   
+
 
  	
 
@@ -69,6 +99,9 @@ $colorOne: #ffa500
   font-size: 36px
   margin-left: 50px
 
-
+.sidenav button 
+  display: block
+  width: 90%
+  margin: 0 auto
 
 </style>

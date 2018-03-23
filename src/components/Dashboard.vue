@@ -10,7 +10,7 @@
 
 		        <h1 class="center">Dashboard</h1>
 
-		          <h2 class="center">Welcome to the media library {{ userName }}</h2>
+		          <h2 class="center">Welcome {{ userName }}</h2>
 
                <div class="row">
                      <div class="item"> 
@@ -34,52 +34,24 @@
 <script>
    
     
-    import {mapActions} from 'vuex';
+   
+
     
     export default { 
 
-      methods: { 
+     
 
-         ...mapActions({
-                loadMedia: 'initMedia',
-                loadMediaTypes: 'initMediaTypes'
-               
-                
-          }),
-
-
-
-      },
       computed:{
 
         userName(){
 
            return this.$store.getters.userData.name;
 
-        },
-        token(){
-
-            return this.$store.getters.token;
-
-        },
-        userId(){
-
-            return this.$store.getters.userId;
-
         }
 
+      
 
 
-      },
-      created(){
-        
-         
-        const mediaData = {token: this.token , userId: this.userId} 
-
-         this.loadMediaTypes(this.token);
-         this.loadMedia(mediaData);
-
-        
 
 
       }

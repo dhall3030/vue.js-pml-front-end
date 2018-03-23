@@ -5,11 +5,11 @@ import store from './store/store'
 
 import Home from './components/Home.vue';
 import Dashboard from './components/Dashboard.vue';
-import Media from './components/Media.vue';
-import AddMedia from './components/AddMedia.vue';
-import AddMediaTypes from './components/AddMediaTypes.vue';
-import MediaTypes from './components/MediaTypes.vue';
-import MediaProfile from './components/MediaProfile.vue';
+import Media from './components/media/Media.vue';
+import AddMedia from './components/media/AddMedia.vue';
+import AddMediaTypes from './components/media/AddMediaTypes.vue';
+import MediaTypes from './components/media/MediaTypes.vue';
+import MediaProfile from './components/media/MediaProfile.vue';
 import Login from './components/auth/Login.vue';
 import SignUp from './components/auth/SignUp.vue';
 

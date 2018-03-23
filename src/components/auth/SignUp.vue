@@ -4,30 +4,47 @@
 
       <div class="container">
           
-          <main>
+        <main>
 
+
+         
+         
 
 					<div class="input-container">
+
+              <div  v-html="getError"></div>
+
+             
 
 
 				    	<h2>Register</h2>		
 
-				    	<div class="input"><label for="name">Name:</label><input type="text" placeholder="Enter your name" id="name" name="name" v-model="name"></div>
+				    	<div class="input" :class="{invalid: $v.name.$error}">
+                <label for="name">Name:</label>
+                <input type="text" placeholder="Enter your name" id="name" @blur="$v.name.$touch()" name="name" v-model="name">
+              </div>
 
-						
+						  <div class="input" :class="{invalid: $v.email.$error}">
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Enter your email" id="email" @blur="$v.email.$touch()" name="email" v-model="email">
+              </div>
 
-						<div class="input"><label for="email">Email:</label><input type="email" placeholder="Enter your email" id="email" name="email" v-model="email"></div>
+  						<div class="input" :class="{invalid: $v.password.$error}">
+                <label for="password">Password:</label>
+                <input type="password" placeholder="Enter a password"  id="password" name="password" @blur="$v.password.$touch()" v-model="password">
+              </div>
 
-						<div class="input"><label for="password">Password:</label><input type="password"  id="password" name="password" v-model="password"></div>
-
-						<div class="input"><label for="confirm">Confirm Password:</label><input type="password"  id="confirm" name="confirm" v-model="c_password"></div>
+  						<div class="input" :class="{invalid: $v.c_password.$error}">
+                <label for="confirm">Confirm Password:</label>
+                <input type="password" placeholder="Confirm password"  id="confirm" name="confirm" @blur="$v.c_password.$touch()" v-model="c_password">
+              </div>
 
 					   
 				          
 				      	
 
 
-				     <button @click="onSubmit">Submit</button>
+				     <button @click="onSubmit" :disabled="$v.$invalid">Submit</button>
 
 		  		</div>
 
@@ -45,6 +62,7 @@
 
 <script>
 
+import { required , email ,numeric, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
 	
@@ -55,6 +73,21 @@ export default {
         password: '',
         c_password: ''
       }
+    },
+    validations:{
+
+      name:{required},
+      email:{
+        required,
+        email: email
+      },
+      password:{
+        required
+      },
+      c_password:{
+        sameAs: sameAs('password')
+      }
+
     },
     methods: {
       onSubmit () {
@@ -68,6 +101,48 @@ export default {
        
         this.$store.dispatch('signup',{name: formData.name , email: formData.email, password: formData.password, c_password: formData.c_password})
       }
+    },
+    computed: {
+
+      getError(){
+
+        let errorMsg = ""
+
+        if(this.$v.name.$error && !this.$v.name.required){
+
+          errorMsg += "<p>The name field must not be empty.</p>";
+
+        }
+        if(this.$v.email.$error && !this.$v.email.required){
+
+          errorMsg += "<p>The email field must not be empty.</p>";
+
+        }
+        if(this.$v.email.$error && !this.$v.email.email){
+
+          errorMsg += "<p>Please provide a valid email address.</p>";
+
+        }
+        if(this.$v.password.$error && !this.$v.password.required){
+
+          errorMsg += "<p>The password field must not be empty.</p>";
+
+        }
+        if(this.$v.password.$error && !this.$v.c_password.sameAs){
+
+          errorMsg += "<p>Passwords must match.</p>";
+
+        }
+
+        if(errorMsg !=""){
+        return '<div class="alert alert-danger">'+errorMsg+'</div>';
+        }
+      
+      }
+
+
+
+
     }	
 
 
@@ -76,3 +151,32 @@ export default {
 
 
 </script>
+
+
+<style lang="sass" scoped>
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+
+.input.invalid label 
+  color: red
+
+.input.invalid input 
+  border: 1px solid #ebccd1
+  background-color: #f2dede
+
+button[disabled],
+button[disabled]:hover,
+button[disabled]:active 
+  border: 1px solid #ccc
+  background-color: transparent
+  color: #ccc;
+  cursor: not-allowed
+  
+
+
+</style>

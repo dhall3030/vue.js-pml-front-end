@@ -68,7 +68,7 @@
         }
 
       },
-      props: ['media'],
+      // props: ['media'],
       methods: { 
 
 
@@ -137,16 +137,21 @@
 
         filterMedia(){
 
-          let appdata = this;
+          let data = this;
 
           return this.media.filter(m =>{
 
-            return m.name.toLowerCase().indexOf(appdata.search.toLowerCase())>=0;
+          return m.name.toLowerCase().indexOf(data.search.toLowerCase())>=0;
 
 
           });
 
 
+
+        },
+        media(){
+
+            return this.$store.getters.media;
 
         },
         token(){
