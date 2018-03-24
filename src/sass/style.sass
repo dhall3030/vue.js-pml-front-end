@@ -1,6 +1,3 @@
-@import "~susy/sass/susy"
-@import 'sass/reset'
-
 $colorOne: #ffa500
 $container-width: 1120px
 
@@ -15,6 +12,11 @@ $container-width: 1120px
 =transition($props)
   -webkit-transition: $props
   transition: $props
+
+=small-screen()
+  float: none
+  width: 100%
+  display: block 
 
 $transProp: border 0.3s ease-out 0s , color 0.3s ease-out 0s
 
@@ -253,13 +255,6 @@ button:hover
     transform: translateX(100%)
   to     
     transform: translateX(0)
-
-
-=small-screen()
-  float: none
-  width: 100%
-  display: block
-
 
 #nav-icon
   width: 40px

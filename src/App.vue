@@ -109,7 +109,8 @@
 
 
 <style lang="sass">
-
+@import "~susy/sass/susy"
+@import 'sass/reset'
 @import 'sass/style'
 
 //$susy: ('columns': susy-repeat(12),'gutters': 0.5em,'spread': 'wide','container-spread': 'wide',);
