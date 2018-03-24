@@ -64,6 +64,7 @@
 
 import { required , email ,numeric, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
 
+
 export default {
 	
 	data () {
@@ -128,7 +129,7 @@ export default {
           errorMsg += "<p>The password field must not be empty.</p>";
 
         }
-        if(this.$v.password.$error && !this.$v.c_password.sameAs){
+        if(this.$v.c_password.$error && !this.$v.c_password.sameAs){
 
           errorMsg += "<p>Passwords must match.</p>";
 
@@ -154,13 +155,6 @@ export default {
 
 
 <style lang="sass" scoped>
-
-=border-radius($radius)
-  -webkit-border-radius: $radius
-  -moz-border-radius:    $radius
-  -ms-border-radius:     $radius
-  border-radius:         $radius
-
 
 .input.invalid label 
   color: red

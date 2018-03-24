@@ -133,11 +133,6 @@ export default {
 
 <style lang="sass" scoped>
 
-=border-radius($radius)
-  -webkit-border-radius: $radius
-  -moz-border-radius:    $radius
-  -ms-border-radius:     $radius
-  border-radius:         $radius
 
 
 .input.invalid label 

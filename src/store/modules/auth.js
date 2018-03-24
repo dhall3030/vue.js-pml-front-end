@@ -66,6 +66,8 @@ const actions ={
 			 localStorage.setItem('userId',response.data.user.id)
 			 localStorage.setItem('userData',JSON.stringify(response.data.user))
 
+			 router.replace('/dashboard')
+
             })
             .catch(error => console.log(error))
 

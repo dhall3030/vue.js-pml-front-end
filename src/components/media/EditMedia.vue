@@ -13,7 +13,7 @@
 
 				<div class="input-container">
 
-					<div v-html="getError"></div> 
+					<div  v-html="getError"></div> 
 
 				    <h2>Add Media</h2>		
 
@@ -165,6 +165,19 @@ export default {
             return this.$store.getters.mediaTypes;
 
         },
+        mediaItem(){
+
+          //return this.media.find(x => x.media_id === this.$route.params.id);
+          //console.log(this.$store.getters.getMediaById(this.$route.params.id));
+
+          return this.$store.getters.getMediaById(this.$route.params.id);
+
+          //return this.$store.getters.getTodoById(2)
+
+           //return this.media.find(x => x.media_id == this.$route.params.id);
+
+
+        },
         getError(){
 
         let errorMsg = ""
@@ -196,6 +209,7 @@ export default {
 
 
 <style lang="sass" scoped>
+
 
 
 .input.invalid label 

@@ -9,7 +9,7 @@
 		         <div class="input-container"> 
 
 
-		         	  <div  v-html="getError"></div>		
+		         	  <div v-html="getError"></div>		
 
 			          <h2>Add Media Types</h2>
 
@@ -134,13 +134,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-=border-radius($radius)
-  -webkit-border-radius: $radius
-  -moz-border-radius:    $radius
-  -ms-border-radius:     $radius
-  border-radius:         $radius
-
 
 .input.invalid label 
   color: red
