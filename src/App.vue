@@ -110,10 +110,6 @@
 
 <style lang="sass">
 
-
-
-
-
 @import 'sass/style'
 
 //$susy: ('columns': susy-repeat(12),'gutters': 0.5em,'spread': 'wide','container-spread': 'wide',);
