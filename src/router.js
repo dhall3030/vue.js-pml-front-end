@@ -15,15 +15,19 @@ import SignUp from './components/auth/SignUp.vue';
 
 Vue.use(VueRouter)
 
+
+
 const routes = [
   {path: '/signup', component: SignUp, name: 'signup'},
   {path: '/login', component: Login, name: 'login'},
   {path: '/home', component: Home, name: 'home'},
+  //Need to secure other routes.
   {path: '/media', component: Media, name: 'media'},
   {path: '/media-types', component: MediaTypes, name: 'media-types'},
   {path: '/add-media', component: AddMedia, name: 'add-media'},
   {path: '/add-media-types', component: AddMediaTypes, name: 'add-media-types'},
   {path: '/media-profile/:id', component: MediaProfile, name: 'media-profile'},
+  
   {path: '/', redirect: '/home' },
   {path: '*', redirect: '/' },
   
