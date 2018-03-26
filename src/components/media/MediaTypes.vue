@@ -65,7 +65,18 @@
                   axios.delete('/media-types/'+mediaTypeId,{headers:{Authorization: 'Bearer '+this.token}})
                   .then(response =>{
                   	console.log(response)
-                  	this.loadMediaTypes(this.token);
+                  	
+                    if(response.data == "23000"){
+
+                      alert('Deletion Failed! Media Type is currently assgined to media items. ')
+
+                    }else{
+
+                      this.loadMediaTypes(this.token);
+
+                    }
+
+                   
                  
                   })
                   .catch(error =>{
